@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire d'upload de fichiers</title>
+    <style type="text/css">
+		h1,p {
+		font-family: Tahoma, Geneva, sans-serif;
+		color: #000080;
+		}
+	</style>
+</head>
+<body>
+	<h1>Outil d'aide à la direction : fiche de continuité pédagogique.</h1>
+	<p>Réalise une fiche de continuité pédagogique depuis une exportation ONDE (fichier CSV).</p>
+	<p>Dans ONDE > Listes et documents > Extractions > Elèves de l'école et leurs responsables.<br />
+	Choisir, <b><i>pour l'instant</i></b>, le tri "Classe" (travailler avec une classe à la fois) et la catégorie "Responsables".</p>
+	<p> <img src="picture.png" alt="Screenshoot extraction" style="border:5px solid black"> </p>
+	<p><i><b>IMPORTANT</b></i> En phase de test : pour l'instant n'exporter qu'une classe à la fois.</p>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        <h2>Upload Fichier</h2>
+        <label for="fileUpload">Sélectionner le fichier CSV depuis votre PC.</label>
+        <input type="file" name="photo" id="fileUpload">
+        <input type="submit" name="submit" value="C'est parti.">
+        <p><strong>Note:</strong> Seul le format .csv est autorisé jusqu'à une taille maximale de 5 Mo.</p>
+    </form>
+    <p>Les fichiers temporaires chargés seront automatiquement supprimés du serveur à la fin de l'exécution du script.</p>
+    <p>Pour l'instant, testé qu'avec une exportation csv par classe. A améliorer par la suite.</p>
+    <p>Tableau de synthèse avec mise en page minimaliste.</p>
+    <p>En cas de soucis / contact : <a href="mailto:cyrille.biot@AROBASE@ac-lille.fr">cyrille.biot@AROBASE@ac-lille.fr</a> [@AROBASE@ à remplacer par @.</p>
+    <p>Source source du script : </p>
+</body>
+</html>
