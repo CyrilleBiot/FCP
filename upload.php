@@ -4,17 +4,16 @@ header("Expires: 0");
 header("Cache-Control: no-cache, must-revalidate");
 header("Pragma: no-cache");
 
-$uploadDir = time();
-mkdir($uploadDir, 0750);
+
 
 // Vérifier si le formulaire a été soumis
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Vérifie si le fichier a été uploadé sans erreur.
-    if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
-        $allowed = array("csv" => "text/csv");
-        $filename = $_FILES["photo"]["name"];
-        $filetype = $_FILES["photo"]["type"];
-        $filesize = $_FILES["photo"]["size"];
+    if(isset($_FILES["formFichier"]) && $_FILES["formFichier"]["error"] == 0){
+        $allowed = array("csv" => "text/csv", "csv1" => "text/plain", "csv2" => "application/vnd.ms-excel", "csv3" => "text/x-csv" );
+        $filename = $_FILES["formFichier"]["name"];
+        $filetype = $_FILES["formFichier"]["type"];
+        $filesize = $_FILES["formFichier"]["size"];
 
         // Vérifie l'extension du fichier
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
@@ -27,17 +26,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Vérifie le type MIME du fichier
         if(in_array($filetype, $allowed)){
             // Vérifie si le fichier existe avant de le télécharger.
-            if(file_exists($_FILES["photo"]["name"])){
-                echo $_FILES["photo"]["name"] . " existe déjà.";
+            if(file_exists($_FILES["formFichier"]["name"])){
+                echo $_FILES["formFichier"]["name"] . " existe déjà.";
             } else{
-                move_uploaded_file($_FILES["photo"]["tmp_name"], $uploadDir."/CSVExtraction.csv");
+				# creation d'un nom de dossier aléatoire (si plusieurs appels simultanés)
+				$uploadDir = time();
+				mkdir($uploadDir, 0750);
+                move_uploaded_file($_FILES["formFichier"]["tmp_name"], $uploadDir."/CSVExtraction.csv");
                 echo "Votre fichier a été téléchargé avec succès.";
             } 
         } else{
             die( "Error: Il y a eu un problème de téléchargement de votre fichier. Veuillez réessayer."); 
         }
     } else{
-        die( "Error: " . $_FILES["photo"]["error"]);
+        die( "Error: " . $_FILES["formFichier"]["error"]);
     }
 }
 
