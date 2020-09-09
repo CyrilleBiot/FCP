@@ -10,7 +10,11 @@ header("Pragma: no-cache");
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Vérifie si le fichier a été uploadé sans erreur.
     if(isset($_FILES["formFichier"]) && $_FILES["formFichier"]["error"] == 0){
-        $allowed = array("csv" => "text/csv", "csv1" => "text/plain", "csv2" => "application/vnd.ms-excel", "csv3" => "text/x-csv" );
+        #$allowed = array("csv" => "text/csv", "csv1" => "text/plain", "csv2" => "application/vnd.ms-excel", "csv3" => "text/x-csv" );
+        $allowed = array("csv" => "text/csv",'text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
+
+
+
         $filename = $_FILES["formFichier"]["name"];
         $filetype = $_FILES["formFichier"]["type"];
         $filesize = $_FILES["formFichier"]["size"];

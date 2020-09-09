@@ -24,6 +24,7 @@ Pour l'instant, testé qu'avec une exportation csv par classe. A améliorer par 
 Tableau de synthèse avec mise en page minimaliste.
 
 ## Changelog
+  * 9 septembre. Ajout nouveaux types MIME (pb / firefox)
   * 8 septembre 2020 Adaptation des type MIME à WINDOWS
   * 6 spetembre 2020 Dépôt initial
 
